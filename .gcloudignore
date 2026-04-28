@@ -1,0 +1,12 @@
+.git
+.next
+node_modules
+.npm-cache
+.playwright-cli
+.sevasetu-dev-store.json
+output
+graphify-out
+SevaSetu Firebase Admin SDK.json
+SevaSetu IAM Admin.json
+.env*
+!.env.example

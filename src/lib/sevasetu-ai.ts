@@ -7,10 +7,7 @@ import {
   type ExtractionResult,
   type Mission,
 } from "@/lib/sevasetu-data";
-import {
-  getServiceAccountForGoogleAuth,
-  readFirebaseProjectId,
-} from "@/lib/firebase-admin";
+import { readFirebaseProjectId } from "@/lib/firebase-admin";
 
 type ImageInput = {
   base64Data: string;
@@ -41,8 +38,12 @@ function getClient() {
     return new GoogleGenAI({ apiKey });
   }
 
-  const credentials = getServiceAccountForGoogleAuth();
-  const project = readFirebaseProjectId();
+  const project =
+    process.env.GOOGLE_GENAI_PROJECT_ID ||
+    process.env.GOOGLE_CLOUD_PROJECT ||
+    process.env.GCLOUD_PROJECT ||
+    process.env.GCP_PROJECT ||
+    readFirebaseProjectId();
 
   if (!project) {
     return null;
@@ -52,7 +53,6 @@ function getClient() {
     vertexai: true,
     project,
     location: process.env.GOOGLE_CLOUD_LOCATION || "global",
-    googleAuthOptions: credentials ? { credentials } : undefined,
   });
 }
 
