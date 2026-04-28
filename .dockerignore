@@ -1,0 +1,11 @@
+.next
+node_modules
+npm-debug.log
+.git
+.gitignore
+graphify-out
+.playwright-cli
+output
+.sevasetu-dev-store.json
+SevaSetu Firebase Admin SDK.json
+SevaSetu IAM Admin.json
